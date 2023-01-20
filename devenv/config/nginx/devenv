@@ -1,0 +1,10 @@
+# landing page
+server {
+    listen 8080;
+
+    access_log /var/log/nginx/devenv.access.log;
+
+    location / {
+        root /home/developer/devenv/devenv/config/html/devenv;
+    }
+}

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  devoreve:
+    image: devenv
+    pull_policy: if_not_present
+    container_name: devenv
+    privileged: true
+    working_dir: /home/developer
+    networks:
+      - devenv-network
+    ports:
+      - "4222:22"
+      - "80:8080"
+      - "10000:10000"
+
+    # environment:
+    #  
+    volumes:
+      # Persistent home folder
+      - type: bind
+        source: /home/ubuntu/devenv
+        target: /home/developer
+      # Bind docker socket to be able to call docker daemon from inside devenv
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+
+# Custom network
+networks:
+  devenv-network:
+    driver: bridge
+    name: devenv-network

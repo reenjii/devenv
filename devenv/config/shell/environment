@@ -1,0 +1,11 @@
+###############
+# Environment #
+###############
+
+# Path
+source "/etc/path_functions"
+pathprepend "/usr/local/go/bin" PATH
+
+# Golang
+export GOPATH="$HOME/go"
+pathprepend "$(go env GOPATH)/bin" PATH

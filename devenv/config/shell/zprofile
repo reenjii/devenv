@@ -1,0 +1,14 @@
+# zprofile is executed after zshenv
+
+# Start supervisord if it is not running already
+if [[ (-z "$(pgrep supervisord)") ]]; then
+    supervisord -c "$HOME/devenv/devenv/supervisor/supervisord.conf"
+fi
+
+# Atuin - https://atuin.sh/
+# In order to use atuin, add this eval in you zsh config
+# eval "$(atuin init zsh)"
+# Atuin stores command history in a SQLite database located here
+# ~/.local/share/atuin/
+# In order to import legacy command history use
+# atuin import auto

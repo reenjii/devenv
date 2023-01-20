@@ -1,0 +1,102 @@
+###########
+# Aliases #
+###########
+
+### ls ###
+alias ls='ls --color'
+alias ll='ls -lAFh'
+alias l='ls -CF'
+alias li='ls -l'
+alias la='ls -CAF'
+alias lll='ls -lFh'
+alias ms=ls
+alias sl=ls
+alias lq=ls
+###
+
+### grep ###
+alias grep='grep --color=auto'
+alias gi='grep -i'     # case insensitive
+alias gn='grep -n'     # line numbers
+alias gin='grep -in'   # case insensitive + line numbers
+alias grin='grep -Rin' # recursive + case insensitive + line numbers
+###
+
+### cd ###
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias cd..='cd ..'
+alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+###
+
+### cp mv rm pwd ###
+alias rm='rm -iv' # confirm before rm
+alias cp='cp -v'
+alias mv='mv -v'
+alias p=pwd
+###
+
+### htop processes of current user ###
+alias h="htop -u \$(whoami)"
+###
+
+### screen ###
+alias sls='screen -ls'
+alias srd='screen -rd'
+alias S='screen -S'
+alias sdm='screen -Sdm'
+###
+
+#### tmux ###
+alias tls='tmux list-sessions'
+alias tn='tmux new -s'
+alias ta='tmux attach -t'
+###
+
+### vim ###
+alias vi='vim'
+alias vil='vim'
+alias vin='vim'
+alias bim='vim'
+alias vtabs="vim -p"  # with multiple files in tabs
+alias vsplit='vim -O' # vertical split several files
+alias hsplit='vim -o' # horizontal split several files
+alias svim="sudo vim" # vim as root
+###
+
+### print given line range (e.g.: lines 11,42 file.txt) ###
+function lines {
+    sed -n $1p $2
+}
+
+### git ###
+alias g='git'
+###
+
+### docker ###
+alias d='docker'
+alias dc='docker-compose'
+###
+
+### supervisor ###
+# http://supervisord.org/
+alias s="supervisorctl"
+alias sst="supervisorctl status"
+alias srst="supervisorctl restart"
+
+function supervisor {
+    local config="$HOME/devenv/devenv/supervisor/supervisord.conf"
+
+    if [[ -n "$(pgrep supervisord)" ]]; then
+        echo "supervisor is already with pid $(pgrep supervisord)"
+        return
+    fi
+
+    echo "start supervisord with conf $config"
+    supervisord -c "$config"
+}

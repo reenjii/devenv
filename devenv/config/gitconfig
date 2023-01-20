@@ -1,0 +1,7 @@
+# Git Alias
+# https://github.com/GitAlias/gitalias
+[include]
+    path = /etc/gitalias
+
+[alias]
+    ameno = commit -a --amend --no-edit --no-verify
