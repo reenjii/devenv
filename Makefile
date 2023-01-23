@@ -11,3 +11,15 @@ down:
 .PHONY: ps
 ps:
 	@docker-compose -f docker-compose.yml ps
+
+.PHONY: redisup
+redisup:
+	@docker-compose -f docker-compose.yml -f resources/docker-compose-redis.yml up -d
+
+.PHONY: redisdown
+redisdown:
+	@docker-compose -f docker-compose.yml -f resources/docker-compose-redis.yml down
+
+.PHONY: redisps
+redisps:
+	@docker-compose -f docker-compose.yml -f resources/docker-compose-redis.yml ps
