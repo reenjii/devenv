@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   devoreve:
-    image: devenv
+    image: reenjii/devenv
     pull_policy: if_not_present
     container_name: devenv
     privileged: true
@@ -10,12 +10,10 @@ services:
     networks:
       - devenv-network
     ports:
-      - "4222:22"
-      - "80:8080"
-      - "10000:10000"
+      - "4222:22"      # ssh
+      - "80:8080"      # http
+      - "10000:10000"  # service
 
-    # environment:
-    #  
     volumes:
       # Persistent home folder
       - type: bind
