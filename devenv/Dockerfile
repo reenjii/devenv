@@ -16,13 +16,14 @@ RUN curl https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz | \
 ENV GOROOT /usr/local/go
 ENV GOPATH /root/go
 
+# go tools
+RUN $GOROOT/bin/go install github.com/rakyll/gotest@latest
+RUN $GOROOT/bin/go install golang.org/x/tools/cmd/goimports@latest
+
 # golangci-lint
 ARG GOLANGCI_LINT_VERSION=1.50.1
 RUN wget https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCI_LINT_VERSION}/golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64.tar.gz -O - | \
     tar -C /usr/local/bin/ -xzf - --strip-components=1 golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64/golangci-lint
-
-# Dev tools
-RUN $GOROOT/bin/go install github.com/rakyll/gotest@latest
 
 # shfmt
 ARG SHFMT_VERSION=3.6.0

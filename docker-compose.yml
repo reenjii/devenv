@@ -1,11 +1,12 @@
 version: "3.8"
 
 services:
+
   devoreve:
     image: reenjii/devenv
-    pull_policy: if_not_present
+    restart: unless-stopped
+    build: ./devenv
     container_name: devenv
-    privileged: true
     working_dir: /home/developer
     networks:
       - devenv-network
@@ -23,6 +24,23 @@ services:
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
+
+  redis:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    container_name: redis
+    networks:
+      - devenv-network
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redisdata:/data
+
+# Volumes
+volumes:
+  redisdata:
+    driver: local
 
 # Custom network
 networks:

@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../go/src"
+		},
+		{
+			"path": "."
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			"golang.go"
+		]
+	},
+	"settings": {
+		"go.formatTool": "goimports"
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": []
+	}
+}
