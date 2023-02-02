@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  devoreve:
+  devenv:
     image: reenjii/devenv
     restart: unless-stopped
     build: ./devenv
